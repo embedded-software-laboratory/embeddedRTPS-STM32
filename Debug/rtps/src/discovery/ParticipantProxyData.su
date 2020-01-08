@@ -1,0 +1,4 @@
+ParticipantProxyData.cpp:10:1:rtps::ParticipantProxyData::ParticipantProxyData(rtps::Guid)	12	static
+ParticipantProxyData.cpp:14:6:void rtps::ParticipantProxyData::reset()	8	static
+ParticipantProxyData.cpp:157:6:bool rtps::ParticipantProxyData::readLocatorIntoList(ucdrBuffer&, std::array<rtps::Locator, 5>&)	16	static
+ParticipantProxyData.cpp:26:6:bool rtps::ParticipantProxyData::readFromUcdrBuffer(ucdrBuffer&)	24	static

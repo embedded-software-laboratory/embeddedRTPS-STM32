@@ -1,0 +1,4 @@
+string.c:25:6:ucdr_serialize_string	16	static
+string.c:30:6:ucdr_deserialize_string	16	static
+string.c:36:6:ucdr_serialize_endian_string	16	static
+string.c:41:6:ucdr_deserialize_endian_string	24	static

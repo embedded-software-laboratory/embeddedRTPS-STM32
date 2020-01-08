@@ -1,0 +1,3 @@
+TopicData.cpp:13:6:bool rtps::TopicData::matchesTopicOf(const rtps::TopicData&)	16	static
+TopicData.cpp:17:6:bool rtps::TopicData::readFromUcdrBuffer(ucdrBuffer&)	24	static
+TopicData.cpp:67:6:bool rtps::TopicData::serializeIntoUcdrBuffer(ucdrBuffer&) const	24	static

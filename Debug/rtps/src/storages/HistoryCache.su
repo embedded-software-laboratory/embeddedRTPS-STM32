@@ -1,0 +1,6 @@
+HistoryCache.cpp:10:26:const rtps::CacheChange* rtps::HistoryCache::addChange(rtps::CacheChange&&)	24	static
+HistoryCache.cpp:19:6:void rtps::HistoryCache::dropFirst()	0	static
+HistoryCache.cpp:23:6:bool rtps::HistoryCache::isFull() const	0	static
+HistoryCache.cpp:29:31:const rtps::SequenceNumber_t& rtps::HistoryCache::getSeqNumMin() const	8	static
+HistoryCache.cpp:43:31:const rtps::SequenceNumber_t& rtps::HistoryCache::getSeqNumMax() const	12	static
+HistoryCache.cpp:57:26:const rtps::CacheChange* rtps::HistoryCache::getChangeBySN(const rtps::SequenceNumber_t&) const	8	static

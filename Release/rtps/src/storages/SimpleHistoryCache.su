@@ -1,0 +1,8 @@
+SimpleHistoryCache.cpp:11:1:rtps::SimpleHistoryCache::SimpleHistoryCache(rtps::SequenceNumber_t)	32	static
+SimpleHistoryCache.cpp:15:6:bool rtps::SimpleHistoryCache::isFull() const	0	static
+SimpleHistoryCache.cpp:21:31:const rtps::SequenceNumber_t& rtps::SimpleHistoryCache::getSeqNumMin() const	0	static
+SimpleHistoryCache.cpp:30:31:const rtps::SequenceNumber_t& rtps::SimpleHistoryCache::getSeqNumMax() const	0	static
+SimpleHistoryCache.cpp:38:26:const rtps::CacheChange* rtps::SimpleHistoryCache::addChange(const uint8_t*, rtps::DataSize_t)	48	static
+SimpleHistoryCache.cpp:52:6:void rtps::SimpleHistoryCache::dropOldest()	16	static
+SimpleHistoryCache.cpp:56:6:void rtps::SimpleHistoryCache::removeUntilIncl(rtps::SequenceNumber_t)	24	static
+SimpleHistoryCache.cpp:71:26:const rtps::CacheChange* rtps::SimpleHistoryCache::getChangeBySN(rtps::SequenceNumber_t) const	24	static

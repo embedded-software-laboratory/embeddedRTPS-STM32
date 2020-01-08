@@ -1,0 +1,9 @@
+netbuf.c:63:9:netbuf_new	8	static
+netbuf.c:81:1:netbuf_delete	8	static
+netbuf.c:102:1:netbuf_alloc	16	static
+netbuf.c:127:1:netbuf_free	8	static
+netbuf.c:147:1:netbuf_ref	16	static
+netbuf.c:172:1:netbuf_chain	16	static
+netbuf.c:192:1:netbuf_data	8	static
+netbuf.c:218:1:netbuf_next	8	static
+netbuf.c:240:1:netbuf_first	0	static

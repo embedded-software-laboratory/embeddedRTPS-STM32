@@ -1,0 +1,12 @@
+igmp.c:757:1:igmp_send	64	static
+igmp.c:114:1:igmp_init	0	static
+igmp.c:128:1:igmp_start	24	static
+igmp.c:160:1:igmp_stop	16	static
+igmp.c:192:1:igmp_report_groups	16	static
+igmp.c:218:1:igmp_lookfor_group	0	static
+igmp.c:323:1:igmp_input	24	static
+igmp.c:449:1:igmp_joingroup	40	static
+igmp.c:486:1:igmp_joingroup_netif	64	static
+igmp.c:545:1:igmp_leavegroup	40	static
+igmp.c:581:1:igmp_leavegroup_netif	16	static
+igmp.c:639:1:igmp_tmr	24	static

@@ -1,0 +1,5 @@
+ip4_frag.c:693:1:ipfrag_free_pbuf_custom	8	static
+ip4_frag.c:164:1:ip_reass_free_complete_datagram	40	static
+ip4_frag.c:128:1:ip_reass_tmr	16	static
+ip4_frag.c:498:1:ip4_reass	48	static
+ip4_frag.c:718:1:ip4_frag	80	static
