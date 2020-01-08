@@ -1,0 +1,7 @@
+#include "basic.idl"
+
+struct Include
+{
+    Basic var_basic;
+};
+

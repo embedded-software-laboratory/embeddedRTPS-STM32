@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/asoa/driver/os.h
+stdbool.h
+-
+stdio.h
+-
+stdint.h
+-
+
+../include/asoa/driver/rtps.h
+stdlib.h
+-
+stdbool.h
+-
+stdint.h
+-
+
+/Users/davidk/Documents/Embedded/embedded-rtps-test/main.cpp
+asoa/driver/os.h
+-
+asoa/driver/rtps.h
+-
+unistd.h
+-
+iostream
+-
+

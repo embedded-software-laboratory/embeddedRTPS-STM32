@@ -1,0 +1,3 @@
+[submodule "thirdparty/Fast-RTPS"]
+	path = thirdparty/Fast-RTPS
+	url = https://github.com/eProsima/Fast-RTPS.git
