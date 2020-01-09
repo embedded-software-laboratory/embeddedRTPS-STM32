@@ -1,0 +1,3 @@
+[submodule "rtps"]
+	path = rtps
+	url = git@git.rwth-aachen.de:CPM/Project/UNICARagil/Software/asoa/targets/rtps.git

@@ -12,5 +12,5 @@ OBJS += \
 
 # Each subdirectory must supply rules for building sources it contributes
 startup/%.o: ../startup/%.s
-	arm-none-eabi-gcc -mcpu=cortex-m7 -g3 -c -I/Users/davidk/Documents/Embedded/embedded-rtps-stm32/rtps/include -I"/Users/davidk/Documents/Embedded/embedded-rtps-stm32/rtps/include" -I"/Users/davidk/Documents/Embedded/embedded-rtps-stm32/rtps/thirdparty/Micro-CDR/include" -x assembler-with-cpp --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m7 -g3 -c -I/Users/davidk/Documents/Embedded/embedded-rtps-stm32/rtps/include -I"/Users/davidk/Documents/Embedded/embedded-rtps/embeddedrtps-stm32/stm32/rtps/include" -I"/Users/davidk/Documents/Embedded/embedded-rtps/embeddedrtps-stm32/stm32/rtps/thirdparty/Micro-CDR/include" -x assembler-with-cpp --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "$@" "$<"
 
