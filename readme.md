@@ -131,4 +131,3 @@ After compiling both projects the communication between both devices can be test
 ...
 ```
 The first component is the byte index while the second component is the value. As the test code sets all values in the test array to 5, this is the expected output.
-
