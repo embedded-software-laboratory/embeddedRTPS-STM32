@@ -60,9 +60,9 @@ pip install pyplusplus
 ---
 
 ## Compilation
-After installing the required dependencies, both projects can be compiled:
+After installing the required dependencies, both projects can be compiled using the following instructions:
 
-### STM32 Project
+## STM32 Project
 To compile and deploy the STM32 project, first open the STM32CubeIDE.
 ```
 File -> Open projects from File System -> Directory -> Select the stm32 Folder 
@@ -78,9 +78,47 @@ This opens the menu to select the build configuration:
  - debug: The debug configuration compiles the code with debug symbols and lowers optimization for debugging.
  - release: This configuration disables debug symbols and increases optimizations to maximum.
 
-The selected configuration is then compiled by STM32CubeIDE.
+The selected configuration is then compiled by STM32CubeIDE. 
+
+#### Flashing the STM32
+The STM32 should now be connected to the linux computer using a micro-USB cable. The cable should be plugged into a USB socket on your computer and into the __debugger__ side of the STM32 Nucleo board.
+
+The compiled configuration can then be flashed on to the STM32 in the following steps:
+```
+Navigation bar -> Run -> Debug
+```
+It might now be necessary to select the target, in which case "STM32 Application" should be selected. The IDE will then flash the STM32 with your selected configuration. 
+
+#### Tips
+- The IDE may prompt you to update the firmware of the onboard ST-Link debugger, this is normal and you can follow the outlined process to update the firmware to the newest version.
+- The IDE may also ask you to switch to the Run/Debug display after flashing a configuration to the STM32, this is the debug screen of the IDE and thus usefull to see the current callstack and more.
+
+## Linux project
+
+To compile the Linux project navigate to the linux folder. Then compile the CMakeLists project using the following commands:
+```bash
+mkdir build \
+cd build \
+cmake .. \
+make 
+```
+
+The resulting executable can then be found in the build directory and is called `simple_receiver`. 
 
 ---
 
 ## Testing communication with STM32
+
+After compiling both projects the communication between both devices can be tested. To conduct this test follow these steps:
+
+#### Setup on Linux
+1. Connect the STM32 to your computer using a ethernet cable.
+2. Ensure all firewalls are disable (probably a OSX issue)
+3. Manually assign an IP address (and subnet mask, ...) to the STM32 <br>
+   (for example: IP:192.168.0.1, subnet: 255.255.255.0, router: 192.168.0.1) 
+
+#### Executing the Test
+
+1. Execute the simple_receiver executable in the linux/build folder
+2. 
 

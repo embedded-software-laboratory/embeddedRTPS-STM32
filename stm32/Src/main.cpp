@@ -459,40 +459,51 @@ void receiveCallbackLatencyRTPS(void* callee, const rtps::ReaderCacheChange& cac
 	xTaskNotifyGive(defaultTaskHandle);
 }
 
+//Callback function to set the boolean to true upon a match
 void setTrue(void* args){
 	*static_cast<volatile bool*>(args) = true;
 }
 
+
+//Function to start the RTPS Test
 void startRTPStest(){
-	bool pubMatched = false;
+
+	//Initialize variables and complete RTPS initialization
 	bool subMatched = false;
 	static rtps::Domain domain;
 	domain.completeInit();
 
+	//Create RTPS participant
 	rtps::Participant* part = domain.createParticipant();
 	if(part == nullptr){
 		return;
 	}
 
-	part->registerOnNewPublisherMatchedCallback(setTrue, &pubMatched);
-	part->registerOnNewSubscriberMatchedCallback(setTrue, &pubMatched);
+	//Register callback to ensure that a publisher is matched to the writer before sending messages
+	part->registerOnNewPublisherMatchedCallback(setTrue, &subMatched);
+	//part->registerOnNewSubscriberMatchedCallback(setTrue, &subMatched);
 
+	//Create new writer to send messages
 	rtps::Writer* writer = domain.createWriter(*part, "TEST", "TEST", false);
-	//rtps::Reader* reader = domain.createReader(*part, "LatencyTest_SUB2PUB", "LatencyType", false);
-	if(writer == nullptr ){//|| reader == nullptr){
+
+	//Check that writer creation was successful
+	if(writer == nullptr ){
 		return;
 	}
 
-	while(!pubMatched){
-		//reader->registerCallback(receiveCallbackLatencyRTPS, nullptr);
+	//Wait for the subscriber on the Linux side to match
+	while(!subMatched){
+
 	}
 
+	//Create a test array to send
 	static std::array<uint8_t, DATA_SIZE> data{};
+
+	//Fill the array with 5s
 	data.fill(5);
 	const size_t numSamples = NUM_SAMPLES;
 
-	uart_print("matched\n");
-	/* Infinite loop */
+	//Begin sending data to the PC
 	for(size_t i=0; i<numSamples; ++i){
 		auto* change = writer->newChange(rtps::ChangeKind_t::ALIVE, data.data(), data.size());
 	}

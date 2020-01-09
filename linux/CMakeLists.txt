@@ -6,6 +6,6 @@ include_directories(include)
 
 add_subdirectory(thirdparty/x86_64)
 
-add_executable(main "main.cpp")
-target_link_libraries(main asoa_rtps_driver)
+add_executable(simple_receiver "main.cpp")
+target_link_libraries(simple_receiver asoa_rtps_driver)
 
