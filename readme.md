@@ -60,7 +60,7 @@ pip install pyplusplus
 ## Compilation
 After installing the required dependencies, both projects can be compiled using the following instructions:
 
-## STM32 Project
+### STM32 Project
 To compile and deploy the STM32 project, first open the STM32CubeIDE.
 ```
 File -> Open projects from File System -> Directory -> Select the stm32 Folder 
@@ -91,7 +91,7 @@ It might now be necessary to select the target, in which case "STM32 Application
 - The IDE may prompt you to update the firmware of the onboard ST-Link debugger, this is normal and you can follow the outlined process to update the firmware to the newest version.
 - The IDE may also ask you to switch to the Run/Debug display after flashing a configuration to the STM32, this is the debug screen of the IDE and thus usefull to see the current callstack and more.
 
-## Linux project
+### Linux project
 
 To compile the Linux project navigate to the linux folder. Then compile the CMakeLists project using the following commands:
 ```bash
