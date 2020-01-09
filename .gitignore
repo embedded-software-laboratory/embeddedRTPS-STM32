@@ -1,1 +1,3 @@
 .DS_Store
+stm32/Release
+stm32/Debug
