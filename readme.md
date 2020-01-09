@@ -64,6 +64,21 @@ After installing the required dependencies, both projects can be compiled:
 
 ### STM32 Project
 To compile and deploy the STM32 project, first open the STM32CubeIDE.
+```
+File -> Open projects from File System -> Directory -> Select the stm32 Folder 
+```
+Then press finish to import the project into your local workspace.
+
+Now select the project in the project explorer:
+```
+Project Explorer -> embedded_rtps_stm32
+```
+After selecting the process, right click the hammer button in the navigation bar. 
+This opens the menu to select the build configuration:
+ - debug: The debug configuration compiles the code with debug symbols and lowers optimization for debugging.
+ - release: This configuration disables debug symbols and increases optimizations to maximum.
+
+The selected configuration is then compiled by STM32CubeIDE.
 
 ---
 
