@@ -1,7 +1,0 @@
-struct SequenceString
-{
-    sequence<string> var_sequence_string;
-    sequence<string<16> > var_sequence_string_16;
-    sequence<string, 8> var_sequence_8_string;
-    sequence<string<16>, 8> var_sequence_8_string_16;
-};
