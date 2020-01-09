@@ -2,6 +2,6 @@
 	path = stm32/rtps
 	url = git@git.rwth-aachen.de:CPM/Project/UNICARagil/Software/asoa/targets/rtps.git
 
-[submodule "linux/thirdparty/Fast-RTPS"]
-	path = linux/thirdparty/Fast-RTPS
+[submodule "linux/thirdparty/x86-64/Fast-RTPS"]
+	path = linux/thirdparty/x86-64/Fast-RTPS
 	url = https://github.com/eProsima/Fast-RTPS.git
