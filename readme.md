@@ -61,8 +61,9 @@ pip install pyplusplus
 
 ## Compilation
 After installing the required dependencies, both projects can be compiled:
-### STM32 Project
 
+### STM32 Project
+To compile and deploy the STM32 project, first open the STM32CubeIDE.
 
 ---
 
