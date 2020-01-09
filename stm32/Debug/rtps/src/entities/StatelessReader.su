@@ -1,8 +1,0 @@
-StatelessReader.cpp:17:6:virtual void rtps::StatelessReader::newChange(const rtps::ReaderCacheChange&)	8	static
-StatelessReader.cpp:23:6:virtual void rtps::StatelessReader::registerCallback(rtps::ddsReaderCallback_fp, void*)	0	static
-StatelessReader.cpp:34:6:virtual bool rtps::StatelessReader::addNewMatchedWriter(const rtps::WriterProxy&)	0	static
-StatelessReader.cpp:39:6:virtual void rtps::StatelessReader::removeWriter(const rtps::Guid&)	0	static
-StatelessReader.cpp:43:6:virtual bool rtps::StatelessReader::onNewHeartbeat(const rtps::SubmessageHeartbeat&, const rtps::GuidPrefix_t&)	0	static
-StatelessReader.h:13:11:rtps::StatelessReader::~StatelessReader()	0	static
-StatelessReader.h:13:11:virtual rtps::StatelessReader::~StatelessReader()	8	static
-StatelessReader.cpp:13:6:void rtps::StatelessReader::init(const rtps::TopicData&)	8	static

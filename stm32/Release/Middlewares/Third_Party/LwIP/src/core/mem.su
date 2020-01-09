@@ -1,5 +1,0 @@
-mem.c:382:1:mem_init	16	static
-mem.c:419:1:mem_free	24	static
-mem.c:478:1:mem_trim	24	static
-mem.c:603:1:mem_malloc	32	static
-mem.c:765:1:mem_calloc	48	static

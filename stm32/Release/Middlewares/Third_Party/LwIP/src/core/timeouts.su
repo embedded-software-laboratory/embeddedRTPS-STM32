@@ -1,6 +1,0 @@
-timeouts.c:164:1:cyclic_timer	24	static
-timeouts.c:175:6:sys_timeouts_init	40	static
-timeouts.c:204:1:sys_timeout	24	static
-timeouts.c:273:1:sys_untimeout	8	static
-timeouts.c:369:1:sys_restart_timeouts	8	static
-timeouts.c:405:1:sys_timeouts_mbox_fetch	32	static

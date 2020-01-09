@@ -1,6 +1,0 @@
-MessageTypes.cpp:12:6:void doCopyAndMoveOn(uint8_t*, const uint8_t*&, size_t)	16	static
-MessageTypes.cpp:17:6:bool rtps::deserializeMessage(const rtps::MessageProcessingInfo&, rtps::Header&)	12	static
-MessageTypes.cpp:30:6:bool rtps::deserializeMessage(const rtps::MessageProcessingInfo&, rtps::SubmessageHeader&)	4	static
-MessageTypes.cpp:42:6:bool rtps::deserializeMessage(const rtps::MessageProcessingInfo&, rtps::SubmessageData&)	8	static
-MessageTypes.cpp:69:6:bool rtps::deserializeMessage(const rtps::MessageProcessingInfo&, rtps::SubmessageHeartbeat&)	8	static
-MessageTypes.cpp:91:6:bool rtps::deserializeMessage(const rtps::MessageProcessingInfo&, rtps::SubmessageAckNack&)	16	static
