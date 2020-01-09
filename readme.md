@@ -5,7 +5,6 @@ This repository contains all components necessary to create a minimal working ex
 
 When both of these projects are executed, the STM32 will send a simple RTPS message using EmbeddedRTPS to the linux system, which will receive the message and display its contents.
 
----
 
 ## Dependencies
 ### STM32 Project
@@ -57,7 +56,6 @@ Python dependencies:
 pip install pyplusplus 
 ```
 
----
 
 ## Compilation
 After installing the required dependencies, both projects can be compiled using the following instructions:
@@ -104,8 +102,6 @@ make
 ```
 
 The resulting executable can then be found in the build directory and is called `simple_receiver`. 
-
----
 
 ## Testing Communication with STM32
 
