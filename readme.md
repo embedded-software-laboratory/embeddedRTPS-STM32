@@ -12,6 +12,8 @@ To compile the project for the STM32, install the following Software:
 - [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html)
 - st-stlink-server.1.2.0-5.1.pkg (Provided with the [IDE](https://www.st.com/en/development-tools/stm32cubeide.html))
 
+---
+
 ### Linux/MacOS Project
 To compile the project for linux, install the following Software:
 
@@ -90,6 +92,8 @@ It might now be necessary to select the target, in which case "STM32 Application
 #### Tips
 - The IDE may prompt you to update the firmware of the onboard ST-Link debugger, this is normal and you can follow the outlined process to update the firmware to the newest version.
 - The IDE may also ask you to switch to the Run/Debug display after flashing a configuration to the STM32, this is the debug screen of the IDE and thus usefull to see the current callstack and more.
+
+---
 
 ### Linux project
 
