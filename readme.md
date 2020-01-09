@@ -120,5 +120,6 @@ After compiling both projects the communication between both devices can be test
 #### Executing the Test
 
 1. Execute the simple_receiver executable in the linux/build folder
-2. 
+2. Flash a configuration to the STM32
+3. The debugger will halt on the first line of the main method, press 
 

@@ -8,7 +8,7 @@ void callback(const uint8_t* msg, const uint32_t len, void* arg){
     std::cout << "Received message from STM32 with len:" << std::to_string(len) << std::endl;
 
     for(uint32_t i = 0; i < len; i ++){
-        std::cout << std::to_string(i) << std::to_string(msg[i]) << std::endl;
+        std::cout << std::to_string(i) << " : " << std::to_string(msg[i]) << std::endl;
     }
 
     std::cout << std::endl;

@@ -480,8 +480,8 @@ void startRTPStest(){
 	}
 
 	//Register callback to ensure that a publisher is matched to the writer before sending messages
-	part->registerOnNewPublisherMatchedCallback(setTrue, &subMatched);
-	//part->registerOnNewSubscriberMatchedCallback(setTrue, &subMatched);
+	//part->registerOnNewPublisherMatchedCallback(setTrue, &subMatched);
+	part->registerOnNewSubscriberMatchedCallback(setTrue, &subMatched);
 
 	//Create new writer to send messages
 	rtps::Writer* writer = domain.createWriter(*part, "TEST", "TEST", false);
@@ -501,6 +501,7 @@ void startRTPStest(){
 
 	//Fill the array with 5s
 	data.fill(5);
+
 	const size_t numSamples = NUM_SAMPLES;
 
 	//Begin sending data to the PC
