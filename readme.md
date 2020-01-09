@@ -107,19 +107,28 @@ The resulting executable can then be found in the build directory and is called 
 
 ---
 
-## Testing communication with STM32
+## Testing Communication with STM32
 
 After compiling both projects the communication between both devices can be tested. To conduct this test follow these steps:
 
 #### Setup on Linux
 1. Connect the STM32 to your computer using a ethernet cable.
 2. Ensure all firewalls are disable (probably a OSX issue)
-3. Manually assign an IP address (and subnet mask, ...) to the STM32 <br>
-   (for example: IP:192.168.0.1, subnet: 255.255.255.0, router: 192.168.0.1) 
+3. Manually assign an IP address (and subnet mask) to the STM32 <br>
+   (for example: IP:192.168.0.1, subnet: 255.255.255.0) 
+4. (It may be necessary to disable wifi if the chosen IP address is in your local network, necessary here)
 
 #### Executing the Test
 
-1. Execute the simple_receiver executable in the linux/build folder
-2. Flash a configuration to the STM32
-3. The debugger will halt on the first line of the main method, press 
+1. Flash a configuration to the STM32
+2. The debugger will halt on the first line of the main method, press either F8 or the Resume button
+3. The STM32 should now wait for a subscriber match (to verify this flash the debug configuration and execute steps one and two, then halt the debugger after a couple of seconds after clicking resume in step 2, the debugger should halt on the `!subMatched` instruction, e.g. line 495)
+4. Execute the simple_receiver executable in the linux/build folder
+5. The simple_receive should receive data directly and the ouput should have the following form <br>
+``` 
+0 : 5 
+1 : 5 
+...
+```
+The first component is the byte index while the second component is the value. As the test code sets all values in the test array to 5, this is the expected output.
 
