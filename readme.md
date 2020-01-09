@@ -37,6 +37,7 @@ Python dependencies:
 ```bash
 pip install pyplusplus 
 ```
+---
 
 #### MacOS 10.15.2 
 Install XCode command line tools:
