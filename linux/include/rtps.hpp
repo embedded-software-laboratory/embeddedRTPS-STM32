@@ -13,6 +13,8 @@
 #include <fastrtps/utils/eClock.h>
 #include <fastrtps/log/Log.h>
 
+typedef void (*callback_t)(const uint8_t* msg, const uint32_t len, void* arg);
+
 RTPSParticipant* create_participant();
 
 RTPSWriter* create_rtps_writer(const char* topic, const char* data_type_name);

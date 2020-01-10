@@ -80,10 +80,10 @@ void publish(RTPSWriter* writer, uint8_t* msg, uint32_t msg_len){
 
 class SubListener : public ReaderListener {
     private:
-        rtps_subscriber_cb_t cb_;
+        callback_t cb_;
         void* args_;
     public:
-        SubListener(rtps_subscriber_cb_t cb, void* args) : cb_(cb), args_(args) {}
+        SubListener(callback_t cb, void* args) : cb_(cb), args_(args) {}
         ~SubListener(){}
         void onNewCacheChangeAdded(RTPSReader* reader, const CacheChange_t* const change){
             cb_(change->serializedPayload.data, change->serializedPayload.length, args_);
@@ -96,7 +96,7 @@ class SubListener : public ReaderListener {
             log("Local  Endpoint GUID" << reader->getGuid()  << std::endl);
         }
 };
-SubListener* rtps_create_subscriber(const char* topic, const char* data_type_name, void* data, rtps_subscriber_cb_t cb){
+SubListener* rtps_create_subscriber(const char* topic, const char* data_type_name, void* data, callback_t cb){
     log("creating subscriber, topic=" << topic << ", data_type=" << data_type_name);
 
     SubListener* listener = new SubListener(cb, data);
