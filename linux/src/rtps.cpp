@@ -1,68 +1,13 @@
 #include <cmath>
 
-#include <asoa/driver/rtps.h>
-#include <asoa/driver/os.h>
-
-#include <fastrtps/Domain.h>
-#include <fastrtps/attributes/TopicAttributes.h>
-#include <fastrtps/rtps/participant/RTPSParticipant.h>
-#include <fastrtps/rtps/rtps_all.h>
-
-
-#include <fastrtps/qos/ReaderQos.h>
-#include <fastrtps/qos/WriterQos.h>
-#include <fastrtps/utils/eClock.h>
-#include <fastrtps/log/Log.h>
-
 using namespace eprosima;
 using namespace fastrtps;
 using namespace rtps;
 
-#define EPROSIMA_MAX_PUBLISHER 100
-#define EPROSIMA_MAX_SUBSCRIBER 100
-
-#define log(X) // std::cout << "[EPROSIMA] " << X << std::endl;
 
 RTPSParticipant* g_participant;
 
-asoa::OS::mutex::mutex_t* driver_mutex_;
-
-typedef struct eprosima_writer_t{
-    RTPSWriter* writer;
-    WriterHistory* history;
-} eprosima_writer_t;
-
-struct rtps_publisher_t g_publisher[EPROSIMA_MAX_PUBLISHER];
-uint32_t g_publisher_cnt = 0;
-
-struct rtps_subscriber_t g_subscriber[EPROSIMA_MAX_SUBSCRIBER];
-uint32_t g_subscriber_cnt = 0;
-
-extern "C"{
-
-bool rtps_finalize_init(){
-    return true;
-    // not necessary for x86
-}
-
-typedef enum{
-    RTPS_ERROR_SUBSCRIBER_CREATE_FAILED,
-    RTPS_ERROR_WRITER_CREATE_FAILED
-} rtps_driver_error_t;
-
-void error_hook(rtps_driver_error_t error){
-    switch(error){
-        case RTPS_ERROR_SUBSCRIBER_CREATE_FAILED:
-        case RTPS_ERROR_WRITER_CREATE_FAILED:
-        default:
-            log("error code: " << error);
-            std::exit(-1);
-    }
-}
-
-RTPSParticipantAttributes PParam;
-
-struct rtps_driver_t* rtps_init(){
+RTPSParticipant* create_participant(){
     log("creating Participant");
     driver_mutex_ = asoa::OS::mutex::create();
 
@@ -81,15 +26,11 @@ struct rtps_driver_t* rtps_init(){
     g_participant = RTPSDomain::createParticipant(PParam);
     log("participant created.");
 
-    rtps_driver_t* driver = new rtps_driver_t();
-    driver->ptr_ = (void*)g_participant;
-    return driver;
+    return g_participant;
 }
 
 
-struct rtps_publisher_t* rtps_create_publisher(const char* topic, const char* data_type_name){
-
-    asoa::OS::mutex::lock(driver_mutex_);
+RTPSWriter* create_rtps_writer(const char* topic, const char* data_type_name){
 
     log("creating publisher, topic = " << topic << ", data type = " << data_type_name);
 
@@ -127,22 +68,11 @@ struct rtps_publisher_t* rtps_create_publisher(const char* topic, const char* da
         log("success registering writer");
     }
 
-    struct eprosima_writer_t* info = (eprosima_writer_t*)malloc(sizeof(eprosima_writer_t));
-
-    info->writer = writer;
-    info->history = history;
-
-    g_publisher[g_publisher_cnt].ptr_ = (void*) info;
-    g_publisher_cnt++;
-
-    asoa::OS::mutex::unlock(driver_mutex_);
-
-    return &(g_publisher[g_publisher_cnt-1]);
+    return writer;
 }
 
-void rtps_publish(struct rtps_publisher_t* publisher, uint8_t* msg, uint32_t msg_len){
-    struct eprosima_writer_t* info = (eprosima_writer_t*)publisher->ptr_;
-    CacheChange_t * ch = info->writer->new_change([msg_len]() -> int32_t { return msg_len; }, ALIVE);
+void publish(RTPSWriter* writer, uint8_t* msg, uint32_t msg_len){
+    CacheChange_t * ch = writer->new_change([msg_len]() -> int32_t { return msg_len; }, ALIVE);
     ch->serializedPayload.data = msg;
     ch->serializedPayload.length = msg_len;
     info->history->add_change(ch);
@@ -166,11 +96,7 @@ class SubListener : public ReaderListener {
             log("Local  Endpoint GUID" << reader->getGuid()  << std::endl);
         }
 };
-
-struct rtps_subscriber_t* rtps_create_subscriber(const char* topic, const char* data_type_name, void* data, rtps_subscriber_cb_t cb){
-
-    asoa::OS::mutex::lock(driver_mutex_);
-
+SubListener* rtps_create_subscriber(const char* topic, const char* data_type_name, void* data, rtps_subscriber_cb_t cb){
     log("creating subscriber, topic=" << topic << ", data_type=" << data_type_name);
 
     SubListener* listener = new SubListener(cb, data);
@@ -206,12 +132,5 @@ struct rtps_subscriber_t* rtps_create_subscriber(const char* topic, const char* 
         log("success registering reader");
     }
 
-    g_subscriber[g_subscriber_cnt].ptr_ = (void*)reader;
-    g_subscriber_cnt++;
-
-    asoa::OS::mutex::unlock(driver_mutex_);
-
-    return &(g_subscriber[g_subscriber_cnt-1]);
-}
-
+    return listerner;
 }
