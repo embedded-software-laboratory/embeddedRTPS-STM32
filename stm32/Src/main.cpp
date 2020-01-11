@@ -475,6 +475,7 @@ void startRTPStest(){
 	//Initialize variables and complete RTPS initialization
 	bool subMatched = false;
 	bool pubMatched = false;
+	bool received_message = false;
 
 	static rtps::Domain domain;
 	domain.completeInit();
@@ -492,7 +493,7 @@ void startRTPStest(){
 	//Create new writer to send messages
 	rtps::Writer* writer = domain.createWriter(*part, "TEST", "TEST", true);
 	rtps::Reader* reader = domain.createReader(*part, "TESTRETURN","TESTRETURN",true);
-	reader->registerCallback(&message_callback, nullptr);
+	reader->registerCallback(&message_callback, &received_message);
 
 	//Check that writer creation was successful
 	if(writer == nullptr || reader == nullptr){
@@ -504,17 +505,8 @@ void startRTPStest(){
 
 	}
 
-	//Create a test array to send
-	static std::array<uint8_t, DATA_SIZE> data{};
+	while(true){
 
-	//Fill the array with 5s
-	data.fill(5);
-
-	const size_t numSamples = NUM_SAMPLES;
-
-	//Begin sending data to the PC
-	for(size_t i=0; i<numSamples; ++i){
-		auto* change = writer->newChange(rtps::ChangeKind_t::ALIVE, data.data(), data.size());
 	}
 }
 
