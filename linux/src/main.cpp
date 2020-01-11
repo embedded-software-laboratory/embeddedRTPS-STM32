@@ -40,7 +40,7 @@ int main(){
     RTPSWriter* writer;
     WriterHistory* history;
 
-    bool writer_creation_success = create_rtps_writer(writer,history, "TESTRETURN","TESTRETURN");
+    bool writer_creation_success = create_rtps_writer(&writer,&history, "TESTRETURN","TESTRETURN");
 
     std::cout << "Looping main thread and waiting for message from STM32." << std::endl;
     

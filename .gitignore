@@ -3,3 +3,4 @@ stm32/Release
 stm32/Debug
 linux/build
 
+.vscode

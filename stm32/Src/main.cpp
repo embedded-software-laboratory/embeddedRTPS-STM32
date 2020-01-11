@@ -445,19 +445,6 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 
 /* LATENCY TEST  RTPS*/
-void receiveCallbackLatencyRTPS(void* callee, const rtps::ReaderCacheChange& cacheChange){
-	GPIO::startReceived();
-	static std::array<uint8_t, DATA_SIZE> data;
-
-	bool success = cacheChange.copyInto(data.data(), data.size());
-	if(!success){
-		while(1);
-	}
-	GPIO::endReceived();
-	GPIO::endRTT();
-	// Receive done. Wake up thread an continue
-	xTaskNotifyGive(defaultTaskHandle);
-}
 
 //Callback function to set the boolean to true upon a match
 void setTrue(void* args){
@@ -481,7 +468,6 @@ void startRTPStest(){
 	bool received_message = false;
 
 	static rtps::Domain domain;
-	domain.completeInit();
 
 	//Create RTPS participant
 	rtps::Participant* part = domain.createParticipant();

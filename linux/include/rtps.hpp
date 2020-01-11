@@ -41,6 +41,6 @@ class SubListener : public ReaderListener {
 };
 void publish(RTPSWriter* writer, WriterHistory* history, uint8_t* msg, uint32_t msg_len);
 SubListener* create_rtps_reader(const char* topic, const char* data_type_name, void* data, callback_t cb);
-bool create_rtps_writer(RTPSWriter* writer, WriterHistory* history, const char* topic, const char* data_type_name);
+bool create_rtps_writer(RTPSWriter** writer, WriterHistory** history, const char* topic, const char* data_type_name);
 
 #endif
