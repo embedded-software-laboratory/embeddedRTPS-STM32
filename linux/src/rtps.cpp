@@ -1,4 +1,5 @@
 #include <cmath>
+#include <rtps.hpp>
 
 using namespace eprosima;
 using namespace fastrtps;

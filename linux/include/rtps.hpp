@@ -7,7 +7,6 @@
 #include <fastrtps/rtps/participant/RTPSParticipant.h>
 #include <fastrtps/rtps/rtps_all.h>
 
-
 #include <fastrtps/qos/ReaderQos.h>
 #include <fastrtps/qos/WriterQos.h>
 #include <fastrtps/utils/eClock.h>
