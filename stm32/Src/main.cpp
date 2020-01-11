@@ -464,12 +464,18 @@ void setTrue(void* args){
 	*static_cast<volatile bool*>(args) = true;
 }
 
+void message_callback(void* callee, const rtps::ReaderCacheChange& cacheChange){
+
+}
+
 
 //Function to start the RTPS Test
 void startRTPStest(){
 
 	//Initialize variables and complete RTPS initialization
 	bool subMatched = false;
+	bool pubMatched = false;
+
 	static rtps::Domain domain;
 	domain.completeInit();
 
@@ -480,19 +486,21 @@ void startRTPStest(){
 	}
 
 	//Register callback to ensure that a publisher is matched to the writer before sending messages
-	//part->registerOnNewPublisherMatchedCallback(setTrue, &subMatched);
+	part->registerOnNewPublisherMatchedCallback(setTrue, &pubMatched);
 	part->registerOnNewSubscriberMatchedCallback(setTrue, &subMatched);
 
 	//Create new writer to send messages
-	rtps::Writer* writer = domain.createWriter(*part, "TEST", "TEST", false);
+	rtps::Writer* writer = domain.createWriter(*part, "TEST", "TEST", true);
+	rtps::Reader* reader = domain.createReader(*part, "TESTRETURN","TESTRETURN",true);
+	reader->registerCallback(&message_callback, nullptr);
 
 	//Check that writer creation was successful
-	if(writer == nullptr ){
+	if(writer == nullptr || reader == nullptr){
 		return;
 	}
 
 	//Wait for the subscriber on the Linux side to match
-	while(!subMatched){
+	while(!subMatched || !pubMatched){
 
 	}
 

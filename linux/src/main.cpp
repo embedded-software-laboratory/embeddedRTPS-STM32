@@ -26,7 +26,7 @@ int main(){
     
     std::cout << "Created subscriber on Topic: Test : Test" << std::endl;
 
-    uint8_t TEST_COUNT = 10;
+    uint32_t TEST_COUNT = 10;
     const size_t BATCH_SIZE = 30; 
 
     bool received_response = false;
@@ -47,8 +47,8 @@ int main(){
         std::cout << "Conducting new Test..." << std::endl;
 
         received_response = false;
-        memset(test_data.data, BATCH_SIZE, TEST_COUNT);
-        publish(writer, history, test_data.data, BATCH_SIZE);
+        test_data.fill(10);
+        publish(writer, history, test_data.data(), BATCH_SIZE);
 
         std::cout << "Send message to the STM32." << std::endl;
 
