@@ -43,7 +43,11 @@ brew install cmake \
 ```
 
 ## Compilation
-After installing the required dependencies, both projects can be compiled using the following instructions:
+After installing the required dependencies, both projects can first cloned and compiled using the following instructions:
+
+```bash
+git clone --recursive ...
+```
 
 ### STM32 Project
 To compile and deploy the STM32 project, first open the STM32CubeIDE.

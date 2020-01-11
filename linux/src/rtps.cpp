@@ -65,7 +65,7 @@ void publish(RTPSWriter* writer, WriterHistory* history, uint8_t* msg, uint32_t 
     history->add_change(ch);
 }
 
-SubListener* create_rtps_subscriber(const char* topic, const char* data_type_name, void* data, callback_t cb){
+SubListener* create_rtps_reader(const char* topic, const char* data_type_name, void* data, callback_t cb){
     std::cout << "Creating RTPS reader on topic:" << topic << std::endl;
 
     SubListener* listener = new SubListener(cb, data);

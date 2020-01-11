@@ -21,8 +21,6 @@ typedef void (*callback_t)(const uint8_t* msg, const uint32_t len, void* arg);
 
 RTPSParticipant* create_participant();
 
-RTPSWriter* create_rtps_writer(const char* topic, const char* data_type_name);
-
 class SubListener : public ReaderListener {
     private:
         callback_t cb_;
@@ -41,7 +39,8 @@ class SubListener : public ReaderListener {
             std::cout << "Local  Endpoint GUID:" << reader->getGuid() << std::endl;
         }
 };
-
+void publish(RTPSWriter* writer, WriterHistory* history, uint8_t* msg, uint32_t msg_len);
+SubListener* create_rtps_reader(const char* topic, const char* data_type_name, void* data, callback_t cb);
 bool create_rtps_writer(RTPSWriter* writer, WriterHistory* history, const char* topic, const char* data_type_name);
 
 #endif
