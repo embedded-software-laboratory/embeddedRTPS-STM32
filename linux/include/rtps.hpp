@@ -36,12 +36,12 @@ class SubListener : public ReaderListener {
         }
 
         void onReaderMatched(RTPSReader* reader, MatchingInfo& info){
-            log( "Reader match"  << std::endl);
-            log( "Remote Endpoint GUID" << info.remoteEndpointGuid  << std::endl);
-            log("Local  Endpoint GUID" << reader->getGuid()  << std::endl);
+            std::cout << "Reader matched to remote Writer." << std::endl;
+            std::cout << "Remote Endpoint GUID:" << info.remoteEndpointGuid << std::endl;
+            std::cout << "Local  Endpoint GUID:" << reader->getGuid() << std::endl;
         }
 };
 
-SubListener* create_rtps_subscriber(const char* topic, const char* data_type_name, void* data, callback_t cb);
+bool create_rtps_writer(RTPSWriter* writer, WriterHistory* history, const char* topic, const char* data_type_name);
 
 #endif

@@ -10,5 +10,5 @@ include_directories(${PROJECT_SOURCE_DIR}/build/Fast-RTPS/include)
 add_subdirectory(Fast-RTPS)
 
 add_executable(simple_receiver "src/main.cpp" "src/rtps.cpp")
-target_link_libraries(simple_receiver asoa_rtps_driver)
+target_link_libraries(simple_receiver fastrtps)
 

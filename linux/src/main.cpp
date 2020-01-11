@@ -24,7 +24,7 @@ int main(){
     
     std::cout << "Created subscriber on Topic: Test : Test" << std::endl;
 
-    auto* sub = create_rtps_subscriber("TEST","TEST",nullptr,&callback);
+    //auto* sub = create_rtps_reader("TEST","TEST",nullptr,&callback);
     
     std::cout << "Looping main thread and waiting for message from STM32." << std::endl;
     

@@ -22,22 +22,12 @@ Packages to install using apt-get:
 ```bash
 apt-get -y update && apt-get -y upgrade
 apt-get install -y \
-    sudo \
     software-properties-common \
-    python \
-    python-pip \
-    wget \
     libboost-all-dev \
     libssl-dev \
     build-essential \
-    castxml \
     cmake \
 ```
-Python dependencies:
-```bash
-pip install pyplusplus 
-```
----
 
 #### MacOS 10.15.2 
 Install XCode command line tools:
@@ -48,17 +38,9 @@ xcode-select --install
 Packages to install using [Homebrew](https://brew.sh/index_de):
 ```bash
 brew install cmake \
-             python \
-             boost-python \
              boost \
              castxml \
 ```
-
-Python dependencies:
-```bash
-pip install pyplusplus 
-```
-
 
 ## Compilation
 After installing the required dependencies, both projects can be compiled using the following instructions:
@@ -102,7 +84,7 @@ To compile the Linux project navigate to the linux folder. Then compile the CMak
 ```bash
 mkdir build \
 cd build \
-cmake .. \
+cmake -DTHIRDPARTY=ON .. \
 make 
 ```
 
