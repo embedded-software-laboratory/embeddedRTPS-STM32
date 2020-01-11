@@ -6,7 +6,7 @@ set (CMAKE_CXX_STANDARD 11)
 include_directories(include)
 
 include_directories(${PROJECT_SOURCE_DIR}/Fast-RTPS/include)
-include_directories(${PROJECT_SOURCE_DIR}/build/Fast-RTPS/include/fastrtps)
+include_directories(${PROJECT_SOURCE_DIR}/build/Fast-RTPS/include)
 add_subdirectory(Fast-RTPS)
 
 add_executable(simple_receiver "src/main.cpp" "src/rtps.cpp")

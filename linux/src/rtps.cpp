@@ -1,18 +1,13 @@
 #include <cmath>
 #include <rtps.hpp>
 
-using namespace eprosima;
-using namespace fastrtps;
-using namespace rtps;
-
-
 RTPSParticipant* g_participant;
 
 RTPSParticipant* create_participant(){
-    log("creating Participant");
-    driver_mutex_ = asoa::OS::mutex::create();
+    std::cout << "Creating Participant..." << std::endl;
+    
+    RTPSParticipantAttributes PParam;
 
-    // static avoids seg fault in destructor for petalinux
     PParam.builtin.use_SIMPLE_RTPSParticipantDiscoveryProtocol = true;
     PParam.builtin.use_SIMPLE_EndpointDiscoveryProtocol = true;
 
@@ -23,9 +18,8 @@ RTPSParticipant* create_participant(){
     PParam.builtin.leaseDuration = c_TimeInfinite;
     PParam.setName("Participant_sub");
 
-    log("PParam configuration done, about to create participant");
     g_participant = RTPSDomain::createParticipant(PParam);
-    log("participant created.");
+    std::cout << "Created Participant succesfully." << std::endl;
 
     return g_participant;
 }
@@ -33,27 +27,23 @@ RTPSParticipant* create_participant(){
 
 RTPSWriter* create_rtps_writer(const char* topic, const char* data_type_name){
 
-    log("creating publisher, topic = " << topic << ", data type = " << data_type_name);
+    std::cout << "Creating FastRTPS Writer on topic " << topic << std::endl;
 
     HistoryAttributes hatt;
     hatt.payloadMaxSize = 15000;
     
     WriterHistory* history = new WriterHistory(hatt);
-    log("Success creating history");
     WriterAttributes watt;
     RTPSWriter* writer;
 
     try{
         writer = RTPSDomain::createRTPSWriter(g_participant, watt, history);
     }catch (const std::exception& e){
-        std::cout << e.what() << std::endl;
-        error_hook(RTPS_ERROR_WRITER_CREATE_FAILED);
+        std::cout << "Writer creation failed with error: " << e.what() << std::endl;
 	return nullptr;
     }
 
-    log("Success creating writer: " << writer);
-    // Register type
-    log("Writer GUID:" << writer->getGuid() << std::endl);
+    std::cout << "Successfully created writer." << std::endl;
 
     TopicAttributes tattr;
 	tattr.topicKind = NO_KEY;
@@ -62,11 +52,8 @@ RTPSWriter* create_rtps_writer(const char* topic, const char* data_type_name){
     WriterQos wqos;
 
     if(!g_participant->registerWriter(writer,tattr, wqos)){
-        log("failed to register writer!");
-        error_hook(RTPS_ERROR_WRITER_CREATE_FAILED);
+        std::cout << "Failed to register Writer." << std::endl;
         return nullptr;
-    }else{
-        log("success registering writer");
     }
 
     return writer;
@@ -76,28 +63,11 @@ void publish(RTPSWriter* writer, uint8_t* msg, uint32_t msg_len){
     CacheChange_t * ch = writer->new_change([msg_len]() -> int32_t { return msg_len; }, ALIVE);
     ch->serializedPayload.data = msg;
     ch->serializedPayload.length = msg_len;
+    writer->
     info->history->add_change(ch);
 }
 
-class SubListener : public ReaderListener {
-    private:
-        callback_t cb_;
-        void* args_;
-    public:
-        SubListener(callback_t cb, void* args) : cb_(cb), args_(args) {}
-        ~SubListener(){}
-        void onNewCacheChangeAdded(RTPSReader* reader, const CacheChange_t* const change){
-            cb_(change->serializedPayload.data, change->serializedPayload.length, args_);
-            reader->getHistory()->remove_change((CacheChange_t*) change);
-        }
-
-        void onReaderMatched(RTPSReader* reader, MatchingInfo& info){
-            log( "Reader match"  << std::endl);
-            log( "Remote Endpoint GUID" << info.remoteEndpointGuid  << std::endl);
-            log("Local  Endpoint GUID" << reader->getGuid()  << std::endl);
-        }
-};
-SubListener* rtps_create_subscriber(const char* topic, const char* data_type_name, void* data, callback_t cb){
+SubListener* create_rtps_subscriber(const char* topic, const char* data_type_name, void* data, callback_t cb){
     log("creating subscriber, topic=" << topic << ", data_type=" << data_type_name);
 
     SubListener* listener = new SubListener(cb, data);

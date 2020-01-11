@@ -1,7 +1,11 @@
 
 #include <rtps.hpp>
 #include <unistd.h>
-#include <iostream>
+
+
+using namespace eprosima;
+using namespace fastrtps;
+using namespace rtps;
 
 // Callback on message from STM32 
 void callback(const uint8_t* msg, const uint32_t len, void* arg){
@@ -18,10 +22,9 @@ void callback(const uint8_t* msg, const uint32_t len, void* arg){
 // Create Subscriber to listen to messages form the STM32
 int main(){
     
-    rtps_init();
     std::cout << "Created subscriber on Topic: Test : Test" << std::endl;
 
-    rtps_subscriber_t* sub = rtps_create_subscriber("TEST","TEST",nullptr,&callback);
+    auto* sub = create_rtps_subscriber("TEST","TEST",nullptr,&callback);
     
     std::cout << "Looping main thread and waiting for message from STM32." << std::endl;
     
