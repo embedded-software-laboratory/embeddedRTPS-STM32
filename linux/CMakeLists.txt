@@ -4,8 +4,8 @@ set (CMAKE_CXX_STANDARD 11)
 
 include_directories(include)
 
-add_subdirectory(thirdparty/x86_64)
+add_subdirectory(Fast-RTPS)
 
-add_executable(simple_receiver "main.cpp")
+add_executable(simple_receiver "src/main.cpp" "src/rtps.cpp")
 target_link_libraries(simple_receiver asoa_rtps_driver)
 
