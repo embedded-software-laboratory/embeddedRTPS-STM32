@@ -465,7 +465,10 @@ void setTrue(void* args){
 }
 
 void message_callback(void* callee, const rtps::ReaderCacheChange& cacheChange){
-
+	rtps::Writer* writer = (rtps::Writer*) callee;
+	std::array<uint8_t,10> data{};
+	data.fill(10);
+	auto* change = writer->newChange(rtps::ChangeKind_t::ALIVE, data.data(), data.size());
 }
 
 
@@ -493,7 +496,7 @@ void startRTPStest(){
 	//Create new writer to send messages
 	rtps::Writer* writer = domain.createWriter(*part, "TEST", "TEST", true);
 	rtps::Reader* reader = domain.createReader(*part, "TESTRETURN","TESTRETURN",true);
-	reader->registerCallback(&message_callback, &received_message);
+	reader->registerCallback(&message_callback, &writer);
 
 	//Check that writer creation was successful
 	if(writer == nullptr || reader == nullptr){
@@ -505,9 +508,7 @@ void startRTPStest(){
 
 	}
 
-	while(true){
-
-	}
+	while(true){}
 }
 
 

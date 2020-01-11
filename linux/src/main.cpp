@@ -23,7 +23,10 @@ void callback(const uint8_t* msg, const uint32_t len, void* arg){
 
 // Create Subscriber to listen to messages form the STM32
 int main(){
-    
+    std::cout << "Creating RTPS Participant..." << std::endl;
+
+    create_participant();
+
     std::cout << "Created subscriber on Topic: Test : Test" << std::endl;
 
     uint32_t TEST_COUNT = 10;

@@ -9,6 +9,6 @@ include_directories(${PROJECT_SOURCE_DIR}/Fast-RTPS/include)
 include_directories(${PROJECT_SOURCE_DIR}/build/Fast-RTPS/include)
 add_subdirectory(Fast-RTPS)
 
-add_executable(simple_receiver "src/main.cpp" "src/rtps.cpp")
-target_link_libraries(simple_receiver fastrtps)
+add_executable(embedded_rtps_test "src/main.cpp" "src/rtps.cpp")
+target_link_libraries(embedded_rtps_test fastrtps)
 
