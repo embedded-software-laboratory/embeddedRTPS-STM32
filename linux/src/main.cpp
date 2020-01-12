@@ -26,33 +26,32 @@ int main(){
 
     create_participant();
 
-    std::cout << "Created subscriber on Topic: Test : Test" << std::endl;
-
-    uint32_t TEST_COUNT = 10;
-    const size_t BATCH_SIZE = 30; 
+    uint32_t numer_of_tests = 10;
+    const size_t test_data_size = 30; 
 
     bool received_response = false;
-    std::array<uint8_t, BATCH_SIZE> test_data;
+    std::array<uint8_t, test_data_size> test_data;
 
-    auto* sub = create_rtps_reader("TEST","TEST",&received_response,&callback);
+    auto* sub = create_rtps_reader("TOLINUX","TEST",&received_response,&callback);
     
     RTPSWriter* writer;
     WriterHistory* history;
 
-    bool writer_creation_success = create_rtps_writer(&writer,&history, "TESTRETURN","TESTRETURN");
+    bool writer_creation_success = create_rtps_writer(&writer,&history, "TOSTM","TEST");
 
+    std::cout << "Waiting for reader match with STM32..." << std::endl;
     while(!sub->reader_has_matched){}
 
-    std::cout << "Looping main thread and waiting for message from STM32." << std::endl;
+    std::cout << "Got Reader match - starting tests..." << std::endl;
     
-    while(TEST_COUNT > 0){
+    while(numer_of_tests > 0){
         usleep(50000); //sleep 50 milliseconds
 
         std::cout << "Conducting new Test..." << std::endl;
 
         received_response = false;
-        test_data.fill(10);
-        publish(writer, history, test_data.data(), BATCH_SIZE);
+        test_data.fill(15);
+        publish(writer, history, test_data.data(), test_data_size);
 
         std::cout << "Send message to the STM32." << std::endl;
 
@@ -61,7 +60,7 @@ int main(){
         }
         std::cout << "Received response from the STM32." << std::endl;
 
-        TEST_COUNT--;
+        numer_of_tests--;
     }
     
     return 0;
