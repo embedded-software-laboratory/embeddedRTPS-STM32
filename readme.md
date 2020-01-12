@@ -1,13 +1,13 @@
-# Embedded RTPS on STM32
-This repository contains all components necessary to create a minimal working example of communication between an STM32 using Embedded RTPS and a Linux system using FastRTPS. This repository contains two projects:
-1. The first project in the `stm32` folder is a STM32CubeIDE project which uses EmbeddedRTPS and is deployed to the STM32.
+# Embedded RTPS on STM32F407
+This repository contains all components necessary to create a minimal working example of communication between an STM32F407 using Embedded RTPS and a Linux system using FastRTPS. This repository contains two projects:
+1. The first project in the `stm32` folder is a STM32CubeIDE project which uses EmbeddedRTPS and is deployed to the STM32F407.
 2. The second project in the `linux` folder is a C++ project using the ASOA RTPS Driver library and Eprosima FastRTPS to be used on the Linux system.
 
-When both of these projects are executed, the STM32 will send a simple RTPS message using EmbeddedRTPS to the linux system, which will receive the message and display its contents.
+When both of these projects are executed, the Linux system will send RTPS messages with test data to the STM32F407, to which the STM32F407 will then respond. This simple communication test is executed 10 times.
 
 
 ## Dependencies
-### STM32 Project
+### STM32F407 Project
 To compile the project for the STM32, install the following Software:
 - [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html)
 - st-stlink-server.1.2.0-5.1.pkg (Provided with the [IDE](https://www.st.com/en/development-tools/stm32cubeide.html))
@@ -49,7 +49,7 @@ After installing the required dependencies, both projects can first cloned and c
 git clone --recursive ...
 ```
 
-### STM32 Project
+### STM32F407 Project
 To compile and deploy the STM32 project, first open the STM32CubeIDE.
 ```
 File -> Open projects from File System -> Directory -> Select the stm32 Folder 
@@ -67,7 +67,7 @@ This opens the menu to select the build configuration:
 
 The selected configuration is then compiled by STM32CubeIDE. 
 
-#### Flashing the STM32
+#### Flashing the STM32F407
 The STM32 should now be connected to the linux computer using a micro-USB cable. The cable should be plugged into a USB socket on your computer and into the __debugger__ side of the STM32 Nucleo board.
 
 The compiled configuration can then be flashed on to the STM32 in the following steps:
@@ -100,17 +100,17 @@ After compiling both projects the communication between both devices can be test
 
 #### Setup on Linux
 1. Connect the STM32 to your computer using a ethernet cable.
-2. Ensure all firewalls are disable (probably a OSX issue)
-3. Manually assign an IP address (and subnet mask) to the STM32 <br>
+2. Ensure all firewalls are disable. (probably an OSX issue)
+3. Manually assign an IP address (and subnet mask) to the STM32. <br>
    (for example: IP:192.168.0.1, subnet: 255.255.255.0) 
-4. (It may be necessary to disable other network connections, like wifi, if the chosen IP address is in your local network, necessary with the example adresses provided here)
+4. (It may be necessary to disable other network connections, like wifi, if the chosen IP address is in your local network, necessary with the example adresses provided here.)
 
 #### Executing the Test
 
-1. Flash a configuration to the STM32
-2. The debugger will halt on the first line of the main method, press either F8 or the Resume button
-3. The STM32 should now wait for a subscriber match (to verify this flash the debug configuration and execute steps one and two, then halt the debugger after a couple of seconds after clicking resume in step 2, the debugger should halt on line 495)
-4. Execute the `embedded_rtps_test` executable in the linux/build folder
+1. Flash a configuration to the STM32.
+2. The debugger will halt on the first line of the main method, press either F8 or the Resume button.
+3. The STM32 should now wait for a subscriber match (to verify this flash the debug configuration and execute steps one and two, then halt the debugger after a couple of seconds after clicking resume in step 2, the debugger should halt on line 495).
+4. Execute the `embedded_rtps_test` executable in the linux/build folder.
 5. The executable will then send test data to the STM32 and the STM32 should respond to by returning other test data of the following form: <br>
 ``` 
 Received message from STM32 with len:10
