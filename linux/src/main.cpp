@@ -58,7 +58,6 @@ int main(){
         while(!received_response){
             usleep(100);
         }
-        std::cout << "Received response from the STM32." << std::endl;
 
         numer_of_tests--;
     }

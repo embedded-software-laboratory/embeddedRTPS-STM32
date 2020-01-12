@@ -92,7 +92,7 @@ cmake -DTHIRDPARTY=ON .. \
 make 
 ```
 
-The resulting executable can then be found in the build directory and is called `simple_receiver`. 
+The resulting executable can then be found in the build directory and is called `embedded_rtps_test`. 
 
 ## Testing Communication with STM32
 
@@ -103,18 +103,26 @@ After compiling both projects the communication between both devices can be test
 2. Ensure all firewalls are disable (probably a OSX issue)
 3. Manually assign an IP address (and subnet mask) to the STM32 <br>
    (for example: IP:192.168.0.1, subnet: 255.255.255.0) 
-4. (It may be necessary to disable wifi if the chosen IP address is in your local network, necessary here)
+4. (It may be necessary to disable other network connections, like wifi, if the chosen IP address is in your local network, necessary with the example adresses provided here)
 
 #### Executing the Test
 
 1. Flash a configuration to the STM32
 2. The debugger will halt on the first line of the main method, press either F8 or the Resume button
-3. The STM32 should now wait for a subscriber match (to verify this flash the debug configuration and execute steps one and two, then halt the debugger after a couple of seconds after clicking resume in step 2, the debugger should halt on the `!subMatched` instruction, e.g. line 495)
-4. Execute the simple_receiver executable in the linux/build folder
-5. The simple_receive should receive data directly and the ouput should have the following form <br>
+3. The STM32 should now wait for a subscriber match (to verify this flash the debug configuration and execute steps one and two, then halt the debugger after a couple of seconds after clicking resume in step 2, the debugger should halt on line 495)
+4. Execute the `embedded_rtps_test` executable in the linux/build folder
+5. The executable will then send test data to the STM32 and the STM32 should respond to by returning other test data of the following form: <br>
 ``` 
-0 : 5 
-1 : 5 
-...
+Received message from STM32 with len:10
+0 : 10
+1 : 10
+2 : 10
+3 : 10
+4 : 10
+5 : 10
+6 : 10
+7 : 10
+8 : 10
+9 : 10
 ```
-The first component is the byte index while the second component is the value. As the test code sets all values in the test array to 5, this is the expected output.
+The first component is the byte index while the second component is the value. As the test code sets all values in the test array to 10, this is the expected output.
