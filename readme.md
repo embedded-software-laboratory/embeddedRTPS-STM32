@@ -20,33 +20,19 @@ To compile the project for linux, install the following Software:
 #### Ubuntu 18.04
 Packages to install using apt-get:
 ```bash
-apt-get -y update && apt-get -y upgrade
-apt-get install -y \
+sudo apt-get -y update && apt-get -y upgrade
+sudo apt-get install -y \
     software-properties-common \
     libboost-all-dev \
     libssl-dev \
     build-essential \
     cmake \
 ```
-
-#### MacOS 10.15.2 
-Install XCode command line tools:
-```bash
-xcode-select --install
-```
-
-Packages to install using [Homebrew](https://brew.sh/index_de):
-```bash
-brew install cmake \
-             boost \
-             castxml \
-```
-
 ## Compilation
 After installing the required dependencies, both projects can first cloned and compiled using the following instructions:
 
 ```bash
-git clone --recursive ...
+git clone --recursive https://git.rwth-aachen.de/CPM/Project/UNICARagil/Software/asoa/targets/embeddedrtps-stm32
 ```
 
 ### STM32F767ZI Project
