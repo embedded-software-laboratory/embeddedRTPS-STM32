@@ -1,6 +1,6 @@
 # Embedded RTPS on STM32Nucleo-F767ZI
 This repository contains all components necessary to create a minimal working example of communication between an STM32F767ZI using Embedded RTPS and a Linux system using FastRTPS. This repository contains two projects:
-1. The first project in the `stm32` folder is a STM32CubeIDE project which uses EmbeddedRTPS and is deployed to the STM32F407.
+1. The first project in the `stm32` folder is a STM32CubeIDE project which uses EmbeddedRTPS and is deployed to the STM32Nucleo-F767ZI.
 2. The second project in the `linux` folder is a C++ project using the ASOA RTPS Driver library and Eprosima FastRTPS to be used on the Linux system.
 
 When both of these projects are executed, the Linux system will send RTPS messages with test data to the STM32F407, to which the STM32F767ZI will then respond. This simple communication test is executed 10 times.
@@ -10,12 +10,12 @@ When both of these projects are executed, the Linux system will send RTPS messag
 ### STM32F767ZI Project
 To compile the project for the STM32, install the following Software:
 - [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html)
-- st-stlink-server.1.2.0-5.1.pkg (Provided with the [IDE](https://www.st.com/en/development-tools/stm32cubeide.html))
+- st-stlink-server.1.2.0-5.1 (Provided with the [IDE](https://www.st.com/en/development-tools/stm32cubeide.html))
 
 ---
 
 ### Linux/MacOS Project
-To compile the project for linux, install the following Software:
+To compile the project for Linux, install the following Software:
 
 #### Ubuntu 18.04
 Packages to install using apt-get:
@@ -63,7 +63,7 @@ Navigation bar -> Run -> Debug
 It might now be necessary to select the target, in which case "STM32 Application" should be selected. The IDE will then flash the STM32 with your selected configuration. 
 
 #### Tips
-- The IDE may prompt you to update the firmware of the onboard ST-Link debugger, this is normal and you can follow the outlined process to update the firmware to the newest version.
+- The IDE may prompt you to update the firmware of the onboard ST-Link debugger, this is normal and you can follow the process to update the firmware to the newest version.
 - The IDE may also ask you to switch to the Run/Debug display after flashing a configuration to the STM32, this is the debug screen of the IDE and thus usefull to see the current callstack and more.
 
 ---
@@ -72,6 +72,7 @@ It might now be necessary to select the target, in which case "STM32 Application
 
 To compile the Linux project navigate to the linux folder. Then compile the CMakeLists project using the following commands:
 ```bash
+cd stm32 \
 mkdir build \
 cd build \
 cmake -DTHIRDPARTY=ON .. \
@@ -93,7 +94,7 @@ After compiling both projects the communication between both devices can be test
 
 #### Executing the Test
 
-1. Flash a configuration to the STM32.
+1. Flash a configuration to the STM32 and run it.
 2. The debugger will halt on the first line of the main method, press either F8 or the Resume button.
 3. The STM32 should now wait for a subscriber match (to verify this flash the debug configuration and execute steps one and two, then halt the debugger after a couple of seconds after clicking resume in step 2, the debugger should halt on line 495).
 4. Execute the `embedded_rtps_test` executable in the linux/build folder.
