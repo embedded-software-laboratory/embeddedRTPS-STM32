@@ -1,13 +1,13 @@
-# Embedded RTPS on STM32F407
-This repository contains all components necessary to create a minimal working example of communication between an STM32F407 using Embedded RTPS and a Linux system using FastRTPS. This repository contains two projects:
+# Embedded RTPS on STM32Nucleo-F767ZI
+This repository contains all components necessary to create a minimal working example of communication between an STM32F767ZI using Embedded RTPS and a Linux system using FastRTPS. This repository contains two projects:
 1. The first project in the `stm32` folder is a STM32CubeIDE project which uses EmbeddedRTPS and is deployed to the STM32F407.
 2. The second project in the `linux` folder is a C++ project using the ASOA RTPS Driver library and Eprosima FastRTPS to be used on the Linux system.
 
-When both of these projects are executed, the Linux system will send RTPS messages with test data to the STM32F407, to which the STM32F407 will then respond. This simple communication test is executed 10 times.
+When both of these projects are executed, the Linux system will send RTPS messages with test data to the STM32F407, to which the STM32F767ZI will then respond. This simple communication test is executed 10 times.
 
 
 ## Dependencies
-### STM32F407 Project
+### STM32F767ZI Project
 To compile the project for the STM32, install the following Software:
 - [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html)
 - st-stlink-server.1.2.0-5.1.pkg (Provided with the [IDE](https://www.st.com/en/development-tools/stm32cubeide.html))
@@ -49,7 +49,7 @@ After installing the required dependencies, both projects can first cloned and c
 git clone --recursive ...
 ```
 
-### STM32F407 Project
+### STM32F767ZI Project
 To compile and deploy the STM32 project, first open the STM32CubeIDE.
 ```
 File -> Open projects from File System -> Directory -> Select the stm32 Folder 
