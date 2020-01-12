@@ -480,9 +480,11 @@ void startRTPStest(){
 	part->registerOnNewSubscriberMatchedCallback(setTrue, &subMatched);
 
 	//Create new writer to send messages
-	rtps::Writer* writer = domain.createWriter(*part, "TEST", "TEST", true);
-	rtps::Reader* reader = domain.createReader(*part, "TESTRETURN","TESTRETURN",true);
-	reader->registerCallback(&message_callback, &writer);
+	rtps::Writer* writer = domain.createWriter(*part, "TEST", "TEST", false);
+	rtps::Reader* reader = domain.createReader(*part, "TESTRETURN","TESTRETURN",false);
+	reader->registerCallback(&message_callback, nullptr);
+
+	domain.completeInit();
 
 	//Check that writer creation was successful
 	if(writer == nullptr || reader == nullptr){
