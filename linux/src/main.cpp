@@ -20,7 +20,6 @@ void callback(const uint8_t* msg, const uint32_t len, void* arg){
     std::cout << std::endl;
 }
 
-
 // Create Subscriber to listen to messages form the STM32
 int main(){
     std::cout << "Creating RTPS Participant..." << std::endl;
@@ -41,6 +40,8 @@ int main(){
     WriterHistory* history;
 
     bool writer_creation_success = create_rtps_writer(&writer,&history, "TESTRETURN","TESTRETURN");
+
+    while(!sub->reader_has_matched){}
 
     std::cout << "Looping main thread and waiting for message from STM32." << std::endl;
     
