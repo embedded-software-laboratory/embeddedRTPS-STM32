@@ -1,5 +1,5 @@
-# Embedded RTPS on STM32Nucleo-F767ZI
-This repository contains all components necessary to create a minimal working example of communication between an STM32F767ZI using Embedded RTPS and a Linux system using FastRTPS. This repository contains two projects:
+# embeddedRTPS on STM32Nucleo-F767ZI
+This repository contains all components necessary to create a minimal working example of communication between an STM32F767ZI using embeddedRTPS and a Linux system using FastRTPS. This repository contains two projects:
 1. The first project in the `stm32` folder is a STM32CubeIDE project which uses EmbeddedRTPS and is deployed to the STM32Nucleo-F767ZI.
 2. The second project in the `linux` folder is a C++ project using the ASOA RTPS Driver library and Eprosima FastRTPS to be used on the Linux system.
 
