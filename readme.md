@@ -5,6 +5,7 @@ This repository contains all components necessary to create a minimal working ex
 
 When both of these projects are executed, the Linux system will send RTPS messages with test data to the STM32F407, to which the STM32F767ZI will then respond. This simple communication test is executed 10 times.
 
+**[The main embeddedRTPS repository is located here.](https://github.com/embedded-software-laboratory/embeddedRTPS)**
 
 ## Dependencies
 ### STM32F767ZI Project
