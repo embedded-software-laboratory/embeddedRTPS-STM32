@@ -32,7 +32,7 @@ sudo apt-get install -y \
 After installing the required dependencies, both projects can first cloned and compiled using the following instructions:
 
 ```bash
-git clone --recursive https://git.rwth-aachen.de/CPM/Project/UNICARagil/Software/asoa/targets/embeddedrtps-stm32
+git clone --recursive https://github.com/embedded-software-laboratory/embeddedRTPS-STM32
 ```
 
 ### STM32F767ZI Project
