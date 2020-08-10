@@ -73,7 +73,7 @@ It might now be necessary to select the target, in which case "STM32 Application
 
 To compile the Linux project navigate to the linux folder. Then compile the CMakeLists project using the following commands:
 ```bash
-cd stm32 \
+cd linux \
 mkdir build \
 cd build \
 cmake -DTHIRDPARTY=ON .. \
