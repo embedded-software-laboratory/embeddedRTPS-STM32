@@ -21,11 +21,10 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f7xx_it.h"
-#include "cmsis_os.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 /* USER CODE END Includes */
-  
+
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN TD */
 
@@ -64,13 +63,13 @@ extern TIM_HandleTypeDef htim1;
 
 /* The prototype shows it is a naked function - in effect this is just an
 assembly function. */
-static void HardFault_Handler( void ) __attribute__( ( naked ) );
+void HardFault_Handler( void ) __attribute__( ( naked ) );
 extern void prvGetRegistersFromStack( uint32_t *pulFaultStackAddress );
 
 /* USER CODE END EV */
 
 /******************************************************************************/
-/*           Cortex-M7 Processor Interruption and Exception Handlers          */ 
+/*           Cortex-M7 Processor Interruption and Exception Handlers          */
 /******************************************************************************/
 /**
   * @brief This function handles Non maskable interrupt.
@@ -88,7 +87,7 @@ void NMI_Handler(void)
 /**
   * @brief This function handles Hard fault interrupt.
   */
-static void HardFault_Handler(void)
+void HardFault_Handler(void)
 {
   /* USER CODE BEGIN HardFault_IRQn 0 */
 	__asm volatile

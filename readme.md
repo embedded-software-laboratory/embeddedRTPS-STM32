@@ -47,12 +47,42 @@ Now select the project in the project explorer:
 ```
 Project Explorer -> embedded_rtps_stm32
 ```
-After selecting the process, right click the hammer button in the navigation bar. 
+After selecting the project, prepare the config file
+
+```
+cd rtps/include/rtps
+cp config_stm.h config.h
+```
+If you are using CMSIS v2, you have to edit the task priorities in `config.h` as follows.
+
+```config.h
+l63        const uint8_t SPDP_WRITER_PRIO = 24;
+l72        const int THREAD_POOL_WRITER_PRIO = 24;
+l73        const int THREAD_POOL_READER_PRIO = 24;
+```
+
+Then, right click the hammer button in the navigation bar. 
 This opens the menu to select the build configuration:
  - debug: The debug configuration compiles the code with debug symbols and lowers optimization for debugging.
  - release: This configuration disables debug symbols and increases optimizations to maximum.
 
 The selected configuration is then compiled by STM32CubeIDE. 
+
+#### Code generation using CubeMX
+You also can use the CubeMX code generating feature in CubeIDE to configure the project.
+After code generation, you have to do the following steps:
+
+* delete auto-generated `Src/main.c` (**not** `main.cpp`)
+* edit `Middlewares/Third_Party/LwIP/system/arc/cc.h l41` as follows
+```
+//#define LWIP_PROVIDE_ERRNO
+#define LWIP_ERRNO_INCLUDE <sys/errno.h>
+```
+* edit `Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_eth.c l1877` as follows
+```
+ macinit.PromiscuousMode = ETH_PROMISCUOUS_MODE_ENABLE;
+```
+Note that when you change the STM's IP address, you also have to change the IP address configure in `rtps/include/rtps/config.h l37`
 
 #### Flashing the STM32F407
 The STM32 should now be connected to the linux computer using a micro-USB cable. The cable should be plugged into a USB socket on your computer and into the __debugger__ side of the STM32 Nucleo board.

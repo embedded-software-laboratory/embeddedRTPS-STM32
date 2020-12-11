@@ -57,7 +57,19 @@ UART_HandleTypeDef huart6;
 
 PCD_HandleTypeDef hpcd_USB_OTG_FS;
 
-osThreadId defaultTaskHandle;
+/* Definitions for defaultTask */
+osThreadId_t defaultTaskHandle;
+const osThreadAttr_t defaultTask_attributes = {
+		  "defaultTask",
+		  0,
+		  0,
+		  0,
+		  0,
+		  250*4,
+		  (osPriority_t) osPriorityNormal, //osPriorityRealtime,
+		  0,
+		  0,
+};
 /* USER CODE BEGIN PV */
 
 const size_t DATA_SIZE = 16;
@@ -71,7 +83,7 @@ static void MX_GPIO_Init(void);
 static void MX_USART3_UART_Init(void);
 static void MX_USB_OTG_FS_PCD_Init(void);
 static void MX_USART6_UART_Init(void);
-void StartDefaultTask(void const * argument);
+void StartDefaultTask(void * argument);
 
 /* USER CODE BEGIN PFP */
 
@@ -181,7 +193,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
-
+  osKernelInitialize();
   /* USER CODE BEGIN RTOS_MUTEX */
   /* add mutexes, ... */
   /* USER CODE END RTOS_MUTEX */
@@ -200,8 +212,10 @@ int main(void)
 
   /* Create the thread(s) */
   /* definition and creation of defaultTask */
-  osThreadDef(defaultTask, StartDefaultTask, osPriorityRealtime, 0, 250);
-  defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
+  //osThreadDef(defaultTask, StartDefaultTask, osPriorityRealtime, 0, 250);
+  //defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
+
+  defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
   volatile int heap_size = rtps::Config::OVERALL_HEAP_SIZE;
@@ -481,7 +495,7 @@ void startRTPStest(){
 
 	//Create new writer to send messages
 	rtps::Writer* writer = domain.createWriter(*part, "TOLINUX","TEST", false);
-	rtps::Reader* reader = domain.createReader(*part, "TOSTM",  "TEST", false);
+	rtps::Reader* reader = domain.createReader(*part, "TOSTM","TEST", false);
 	reader->registerCallback(&message_callback, writer);
 
 	domain.completeInit();
@@ -511,12 +525,11 @@ void startRTPStest(){
 /* USER CODE END Header_StartDefaultTask */
 
 
-void StartDefaultTask(void const * argument)
+void StartDefaultTask(void * argument)
 {
 
 	/* init code for LWIP */
 	MX_LWIP_Init();
-
 
     /* USER CODE BEGIN 5 */
 	startRTPStest();
