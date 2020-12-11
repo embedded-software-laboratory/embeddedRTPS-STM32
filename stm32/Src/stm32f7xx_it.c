@@ -63,7 +63,7 @@ extern TIM_HandleTypeDef htim1;
 
 /* The prototype shows it is a naked function - in effect this is just an
 assembly function. */
-static void HardFault_Handler( void ) __attribute__( ( naked ) );
+void HardFault_Handler( void ) __attribute__( ( naked ) );
 extern void prvGetRegistersFromStack( uint32_t *pulFaultStackAddress );
 
 /* USER CODE END EV */

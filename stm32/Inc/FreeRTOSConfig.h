@@ -1,7 +1,8 @@
 /* USER CODE BEGIN Header */
 /*
- * FreeRTOS Kernel V10.0.1
- * Copyright (C) 2017 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
+ * FreeRTOS Kernel V10.2.1
+ * Portion Copyright (C) 2017 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
+ * Portion Copyright (C) 2019 StMicroelectronics, Inc.  All Rights Reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -137,7 +138,7 @@ See http://www.FreeRTOS.org/RTOS-Cortex-M3-M4.html. */
 /* Normal assert() semantics without relying on the provision of an assert.h
 header file. */
 /* USER CODE BEGIN 1 */
-#define configASSERT( x ) if ((x) == 0) {taskDISABLE_INTERRUPTS(); for( ;; );} 
+#define configASSERT( x ) if ((x) == 0) {taskDISABLE_INTERRUPTS(); for( ;; );}
 /* USER CODE END 1 */
 
 /* Definitions that map the FreeRTOS port interrupt handlers to their CMSIS
@@ -152,10 +153,6 @@ standard names. */
 
 /* USER CODE BEGIN Defines */
 /* Section where parameter definitions can be added (for instance, to override default ones in FreeRTOS.h) */
-#define configCHECK_FOR_STACK_OVERFLOW 			 2
-#define INCLUDE_uxTaskGetStackHighWaterMark 	 1
-#define configUSE_MALLOC_FAILED_HOOK			 1
-#define configUSE_TRACE_FACILITY 				 1
 /* USER CODE END Defines */
 
 #endif /* FREERTOS_CONFIG_H */

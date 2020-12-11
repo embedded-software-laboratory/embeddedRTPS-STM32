@@ -140,7 +140,7 @@ void HAL_ETH_MspInit(ETH_HandleTypeDef* ethHandle)
     HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
 
     /* Peripheral interrupt init */
-    HAL_NVIC_SetPriority(ETH_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(ETH_IRQn, 5, 0);
     HAL_NVIC_EnableIRQ(ETH_IRQn);
   /* USER CODE BEGIN ETH_MspInit 1 */
 
@@ -236,7 +236,7 @@ static void low_level_init(struct netif *netif)
   heth.Init.MediaInterface = ETH_MEDIA_INTERFACE_RMII;
 
   /* USER CODE BEGIN MACADDRESS */
-    
+
   /* USER CODE END MACADDRESS */
 
   hal_eth_init_status = HAL_ETH_Init(&heth);
@@ -291,7 +291,7 @@ static void low_level_init(struct netif *netif)
   HAL_ETH_Start(&heth);
 
 /* USER CODE BEGIN PHY_PRE_CONFIG */
-  netif->flags |= NETIF_FLAG_IGMP;
+netif->flags |= NETIF_FLAG_IGMP;
 /* USER CODE END PHY_PRE_CONFIG */
 
   /* Read Register Configuration */
@@ -305,13 +305,13 @@ static void low_level_init(struct netif *netif)
   HAL_ETH_ReadPHYRegister(&heth, PHY_ISFR , &regvalue);
 
 /* USER CODE BEGIN PHY_POST_CONFIG */
-    
+
 /* USER CODE END PHY_POST_CONFIG */
 
 #endif /* LWIP_ARP || LWIP_ETHERNET */
 
 /* USER CODE BEGIN LOW_LEVEL_INIT */
-    
+
 /* USER CODE END LOW_LEVEL_INIT */
 }
 
@@ -543,7 +543,7 @@ static err_t low_level_output_arp_off(struct netif *netif, struct pbuf *q, const
   errval = ERR_OK;
 
 /* USER CODE BEGIN 5 */
-    
+
 /* USER CODE END 5 */
 
   return errval;
@@ -764,7 +764,7 @@ void ethernetif_update_config(struct netif *netif)
   */
 __weak void ethernetif_notify_conn_changed(struct netif *netif)
 {
-  /* NOTE : This is function could be implemented in user file 
+  /* NOTE : This is function could be implemented in user file
             when the callback is needed,
   */
 
