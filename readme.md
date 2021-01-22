@@ -3,7 +3,7 @@ This repository contains all components necessary to create a minimal working ex
 1. The first project in the `stm32/` directory is a STM32CubeIDE project which uses EmbeddedRTPS and is deployed to the STM32Nucleo-F767ZI.
 2. The second project in the `linux/` directory is a C++ project that uses eProsima FastRTPS for the Linux system. It can also be compiled and executed on macOS.
 
-When both of these projects are executed, the Linux system will send RTPS messages with test data to the STM32F407, to which the STM32F767ZI will then respond. This simple communication test is executed 10 times.
+When both of these projects are executed, the Linux system will send RTPS messages with test data to the STM32F767ZI, to which the STM32F767ZI will then respond. This simple communication test is executed 10 times.
 
 **[The main embeddedRTPS repository is located here.](https://github.com/embedded-software-laboratory/embeddedRTPS)**
 
@@ -56,7 +56,7 @@ This opens the menu to select the build configuration:
 
 The selected configuration is then compiled by STM32CubeIDE. 
 
-#### Flashing the STM32F407
+#### Flashing the STM32F767ZI
 The STM32 should now be connected to the Linux/macOS computer using a micro-USB cable. The cable should be plugged into a USB socket on your computer and into the __debugger__ side of the STM32 Nucleo board.
 
 The compiled configuration can then be flashed on to the STM32 in the following steps:
