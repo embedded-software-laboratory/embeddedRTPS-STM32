@@ -114,14 +114,22 @@ extern "C"	void prvGetRegistersFromStack( uint32_t *pulFaultStackAddress )
 
 extern "C" int __io_putchar(int ch) {
   //taskENTER_CRITICAL();
+#ifndef STM32_PRINTF_SERIAL
   HAL_UART_Transmit(&huart6, (uint8_t *)&ch, 1, 1000);
+#else
+  HAL_UART_Transmit(&huart3, (uint8_t *)&ch, 1, 0xFFFF);
+#endif
   //taskEXIT_CRITICAL();
   return ch;
 }
 
 void uart_print(char* str){
 	taskENTER_CRITICAL();
+#ifndef STM32_PRINTF_SERIAL
 	HAL_UART_Transmit(&huart6, (uint8_t*) str, strlen(str), 100);
+#else
+	HAL_UART_Transmit(&huart3, (uint8_t*) str, strlen(str), 100);
+#endif
 	taskEXIT_CRITICAL();
 }
 
@@ -179,6 +187,10 @@ int main(void)
   MX_USB_OTG_FS_PCD_Init();
   MX_USART6_UART_Init();
   /* USER CODE BEGIN 2 */
+#ifdef STM32_PRINTF_SERIAL
+  uart_print("embeddedRTPS-STM32\n");
+  printf("simple communication test\n");
+#endif
 
   /* USER CODE END 2 */
 
