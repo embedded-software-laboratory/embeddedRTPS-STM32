@@ -6,7 +6,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2019 STMicroelectronics.
+  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
   * All rights reserved.</center></h2>
   *
   * This software component is licensed by ST under Ultimate Liberty license
@@ -14,7 +14,7 @@
   * the License. You may obtain a copy of the License at:
   *                             www.st.com/SLA0044
   *
-  *************************************************************************  
+  *************************************************************************
 
   */
 /* Define to prevent recursive inclusion -------------------------------------*/
@@ -46,16 +46,16 @@
 /* Global Variables ----------------------------------------------------------*/
 extern ETH_HandleTypeDef heth;
 
-/* LWIP init function */	
+/* LWIP init function */
 void MX_LWIP_Init(void);
 
 #if !WITH_RTOS
 /* USER CODE BEGIN 1 */
 /* Function defined in lwip.c to:
- *   - Read a received packet from the Ethernet buffers 
+ *   - Read a received packet from the Ethernet buffers
  *   - Send it to the lwIP stack for handling
  *   - Handle timeouts if NO_SYS_NO_TIMERS not set
- */ 
+ */
 void MX_LWIP_Process(void);
 
 /* USER CODE END 1 */

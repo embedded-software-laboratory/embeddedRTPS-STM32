@@ -41,7 +41,7 @@
 
 #include "cmsis_os.h"
 
-#if defined(LWIP_SOCKET_SET_ERRNO) && defined(LWIP_PROVIDE_ERRNO)
+#if defined(LWIP_PROVIDE_ERRNO)
 int errno;
 #endif
 
@@ -135,6 +135,14 @@ err_t sys_mbox_trypost(sys_mbox_t *mbox, void *msg)
   }
 
   return result;
+}
+
+
+/*-----------------------------------------------------------------------------------*/
+//   Try to post the "msg" to the mailbox.
+err_t sys_mbox_trypost_fromisr(sys_mbox_t *mbox, void *msg)
+{
+  return sys_mbox_trypost(mbox, msg);
 }
 
 /*-----------------------------------------------------------------------------------*/
@@ -447,7 +455,7 @@ void sys_mutex_unlock(sys_mutex_t *mutex)
 sys_thread_t sys_thread_new(const char *name, lwip_thread_fn thread , void *arg, int stacksize, int prio)
 {
 #if (osCMSIS < 0x20000U)
-  const osThreadDef_t os_thread_def = { (char *)name, (os_pthread)thread, (osPriority)prio, 0, stacksize/4};
+  const osThreadDef_t os_thread_def = { (char *)name, (os_pthread)thread, (osPriority)prio, 0, stacksize};
   return osThreadCreate(&os_thread_def, arg);
 #else
   const osThreadAttr_t attributes = {
