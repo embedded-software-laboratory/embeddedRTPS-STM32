@@ -26,7 +26,7 @@ int main(){
 
     create_participant();
 
-    uint32_t numer_of_tests = 10;
+    uint32_t number_of_tests = 10;
     const size_t test_data_size = 30; 
 
     bool received_response = false;
@@ -44,10 +44,10 @@ int main(){
 
     std::cout << "Got Reader match - starting tests..." << std::endl;
     
-    while(numer_of_tests > 0){
+    while(number_of_tests > 0){
         usleep(50000); //sleep 50 milliseconds
 
-        std::cout << "Conducting new Test..." << std::endl;
+        std::cout << "Conducting new Test: " << number_of_tests << std::endl;
 
         received_response = false;
         test_data.fill(15);
@@ -59,7 +59,7 @@ int main(){
             usleep(100);
         }
 
-        numer_of_tests--;
+        number_of_tests--;
     }
     
     return 0;
