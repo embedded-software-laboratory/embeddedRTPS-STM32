@@ -1,7 +1,6 @@
-[submodule "stm32/rtps"]
-	path = stm32/rtps
-	url = https://github.com/embedded-software-laboratory/embeddedRTPS.git
-
 [submodule "linux/Fast-RTPS"]
 	path = linux/Fast-RTPS
 	url = https://github.com/eProsima/Fast-RTPS.git
+[submodule "stm32/Middlewares/Third_Party/embeddedRTPS"]
+	path = stm32/Middlewares/Third_Party/embeddedRTPS
+	url = https://github.com/embedded-software-laboratory/embeddedRTPS
