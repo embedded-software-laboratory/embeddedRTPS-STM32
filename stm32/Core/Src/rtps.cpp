@@ -54,7 +54,7 @@ void startRTPStest(){
 
 	//Wait for the subscriber on the Linux side to match
 	while(!subMatched || !pubMatched){
-
+		osDelay(500);
 	}
 
 	int i = 0;
