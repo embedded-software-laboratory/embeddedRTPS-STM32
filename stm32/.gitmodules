@@ -1,0 +1,3 @@
+[submodule "Middlewares/Third_Party/embeddedRTPS"]
+	path = Middlewares/Third_Party/embeddedRTPS
+	url = https://github.com/embedded-software-laboratory/embeddedRTPS

@@ -1,15 +1,10 @@
-cmake_minimum_required(VERSION 3.13)
-project(embedded_test)
-set(CMAKE_BUILD_TYPE Debug)
+cmake_minimum_required(VERSION 3.10)
+project(asoa_linux_examples)
 
-set (CMAKE_CXX_STANDARD 11)
+set(CMAKE_BUILD_TYPE Release)
 
-include_directories(include)
+find_package(fastrtps 2.3.2 REQUIRED)
+find_package(fastcdr REQUIRED)
 
-include_directories(${PROJECT_SOURCE_DIR}/Fast-RTPS/include)
-include_directories(${PROJECT_SOURCE_DIR}/build/Fast-RTPS/include)
-add_subdirectory(Fast-RTPS)
-
-add_executable(embedded_rtps_test "src/main.cpp" "src/rtps.cpp")
-target_link_libraries(embedded_rtps_test fastrtps)
-
+add_executable(hello_world "main.cpp")
+target_link_libraries(hello_world fastcdr fastrtps)
