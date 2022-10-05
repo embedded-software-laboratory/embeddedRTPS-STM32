@@ -43,19 +43,12 @@ File -> Open projects from File System -> Directory -> Select the stm32/ directo
 ```
 Then press finish to import the project into your local workspace.
 
-You need to prepare `rtps/include/rtps/config.h` file to compile the Project. The easiest way is to copy from `config_stm.h` in the same directory.
-
 Now select the project in the project explorer:
 ```
 Project Explorer -> embedded_rtps_stm32
 ```
-After selecting the project, prepare the config file
 
-```
-cd rtps/include/rtps
-cp config_stm.h config.h
-```
-If you are using CMSIS v2, you have to edit the task priorities in `config.h` as follows.
+If you are using CMSIS v2, you have to edit the task priorities in `Core/Inc/rtps/config.h` as follows.
 
 ```config.h
 l63        const uint8_t SPDP_WRITER_PRIO = 24;
