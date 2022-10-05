@@ -77,7 +77,7 @@ After code generation, you have to do the following steps:
 ```
  macinit.PromiscuousMode = ETH_PROMISCUOUS_MODE_ENABLE;
 ```
-Note that when you change the STM's IP address, you also have to change the IP address configure in `rtps/include/rtps/config.h l37`
+Note that when you change the STM's IP address, you also have to change the IP address configure in `Core/Inc/rtps/config.h l40`
 
 
 #### Flashing the STM32F767ZI
@@ -116,9 +116,9 @@ After compiling both projects the communication between both devices can be test
 1. Connect the STM32 to your computer using a ethernet cable.
 2. Ensure all firewalls are disable. (probably an OSX issue)
 3. Manually assign an IP address (and subnet mask) to the STM32. <br>
-   (for example: IP:192.168.0.1, subnet: 255.255.255.0) 
+   (for example: IP:192.168.1.1, subnet: 255.255.255.0)
 4. (It may be necessary to disable other network connections, like wifi, if the chosen IP address is in your local network, necessary with the example adresses provided here.)
-5. (You can also communicate with the STM32 via a router. Network settings such as IP address are in `rtps/include/rtps/config.h` and `Src/lwip.c`.)
+5. (You can also communicate with the STM32 via a router. Network settings such as IP address are in `Core/Inc/rtps/config.h` and `LWIP/App/lwip.c`.)
 
 #### Executing the Test
 
