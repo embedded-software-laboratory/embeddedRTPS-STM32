@@ -10,7 +10,7 @@ When both of these projects are executed, the Linux system will send RTPS messag
 ## Dependencies
 ### STM32F767ZI Project
 To compile the project for the STM32, install the following Software:
-- [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html)
+- [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html) (version 1.9.0 or later)
 - st-stlink-server.1.2.0-5.1 (Provided with the [IDE](https://www.st.com/en/development-tools/stm32cubeide.html))
 
 ---
