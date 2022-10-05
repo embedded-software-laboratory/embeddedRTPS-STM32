@@ -29,6 +29,13 @@ sudo apt-get install -y \
     build-essential \
     cmake
 ```
+
+### Fast DDS
+
+For `linux/` side application, eProsima Fast DDS v2.3.2 or later is required. The simplest way to prepare is to install from sources according to the follow guide. Note that preparing the environment (e.g. `source ~/Fast-DDS/install/setup.bash`) is also needed before building or executing.
+
+https://fast-dds.docs.eprosima.com/en/latest/installation/sources/sources_linux.html#linux-sources
+
 ## Compilation
 After installing the required dependencies, both projects can first cloned and compiled using the following instructions:
 
@@ -46,14 +53,6 @@ Then press finish to import the project into your local workspace.
 Now select the project in the project explorer:
 ```
 Project Explorer -> embedded_rtps_stm32
-```
-
-If you are using CMSIS v2, you have to edit the task priorities in `Core/Inc/rtps/config.h` as follows.
-
-```config.h
-l63        const uint8_t SPDP_WRITER_PRIO = 24;
-l72        const int THREAD_POOL_WRITER_PRIO = 24;
-l73        const int THREAD_POOL_READER_PRIO = 24;
 ```
 
 Then, right click the hammer button in the navigation bar. 
