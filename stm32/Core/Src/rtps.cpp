@@ -16,7 +16,7 @@ void setTrue(void* args){
 }
 
 void message_callback(void* callee, const rtps::ReaderCacheChange& cacheChange){
-	printf("Received data from Linux");
+	printf("Received data from Linux\r\n");
 }
 
 
