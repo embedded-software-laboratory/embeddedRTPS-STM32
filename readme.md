@@ -106,7 +106,7 @@ cmake -DTHIRDPARTY=ON ..
 make 
 ```
 
-The resulting executable can then be found in the build directory and is called `embedded_rtps_test`. 
+The resulting executable can then be found in the build directory and is called `hello_world`. 
 
 ## Testing Communication with STM32
 
@@ -125,19 +125,16 @@ After compiling both projects the communication between both devices can be test
 1. Flash a configuration to the STM32 and run it.
 2. The debugger will halt on the first line of the main method, press either F8 or the Resume button.
 3. The STM32 should now wait for a subscriber match (to verify this flash the debug configuration and execute steps one and two, then halt the debugger after a couple of seconds after clicking resume in step 2, the debugger should halt on line 495).
-4. Execute the `embedded_rtps_test` executable in the `linux/build` directory.
+4. Execute the `hello_world` executable in the `linux/build` directory.
 5. The executable will then send test data to the STM32 and the STM32 should respond to by returning other test data of the following form: <br>
-``` 
-Received message from STM32 with len:10
-0 : 10
-1 : 10
-2 : 10
-3 : 10
-4 : 10
-5 : 10
-6 : 10
-7 : 10
-8 : 10
-9 : 10
 ```
-The first component is the byte index while the second component is the value. As the test code sets all values in the test array to 10, this is the expected output.
+Received Hello World Data 0
+Sending data
+Received Hello World Data 1
+Sending data
+Received Hello World Data 2
+Sending data
+Received Hello World Data 3
+Sending data
+<sniped.>
+```
