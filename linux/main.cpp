@@ -28,7 +28,7 @@ using namespace rtps;
 RTPSWriter* writer;
 WriterHistory* writer_history;
 
-uint8_t msg[100];
+std::array<uint8_t, 10> msg;
 
 bool sent = false;
 
@@ -40,13 +40,20 @@ class SubListener : public ReaderListener {
                              const CacheChange_t* const change) {
     change->serializedPayload.data;
     change->serializedPayload.length;
-    std::cout << "Received Hello World Data " << (int)change->serializedPayload.data[0] << std::endl;
+    uint8_t data = change->serializedPayload.data[0];
+    std::cout << "Received Hello World Data " << (int)data << ", " << change->serializedPayload.length << " byte" << std::endl;
     reader->getHistory()->remove_change((CacheChange_t*)change);
 
-    CacheChange_t* ch = writer->new_change([]() -> uint32_t { return sizeof(msg)/sizeof(msg[0]); }, ALIVE);
+    CacheChange_t* ch = writer->new_change([]() -> uint32_t { return msg.size(); }, ALIVE);
+    if(ch == nullptr){
+	std::cout << "History is full, clearing 100 samples from history" << std::endl;
+	writer->remove_older_changes(100);
+	return;
+    }
+
     msg[0] = send_idx++;
-    ch->serializedPayload.data = msg;
-    ch->serializedPayload.length = sizeof(msg)/sizeof(msg[0]);
+    ch->serializedPayload.data[0] = send_idx++;
+    ch->serializedPayload.length = msg.size();
     writer_history->add_change(ch);
 
     std::cout << "Sending data" << std::endl;
