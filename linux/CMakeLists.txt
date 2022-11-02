@@ -3,7 +3,7 @@ project(asoa_linux_examples)
 
 set(CMAKE_BUILD_TYPE Release)
 
-find_package(fastrtps 2.3.2 REQUIRED)
+find_package(fastrtps 2.8.0 REQUIRED)
 find_package(fastcdr REQUIRED)
 
 add_executable(hello_world "main.cpp")

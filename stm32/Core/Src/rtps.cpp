@@ -57,11 +57,11 @@ void startRTPStest(){
 		osDelay(500);
 	}
 
-	int i = 0;
+	uint8_t i = 0;
 	while(true){
 		static std::array<uint8_t,10> data{};
 		data[0] = i++;
 		auto* change = writer->newChange(rtps::ChangeKind_t::ALIVE, data.data(), data.size());
-		osDelay(1000);
+		osDelay(50);
 	}
 }
